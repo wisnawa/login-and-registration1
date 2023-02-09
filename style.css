@@ -1,0 +1,41 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,300;0,400;0,600;0,700;1,700&display=swap");
+:root {
+  --primary: #5352ed;
+  --white-color: #ffffff;
+  --light-color: #e6e6ed;
+  --grey-color: #a4b0be;
+  --dark-color: #2f3542;
+}
+* {
+  margin: 0;
+  padding: 0;
+}
+*,
+::before,
+::after {
+  box-sizing: border-box;
+}
+a {
+  text-decoration: none;
+  color: inherit;
+}
+/* remove blue tap on mobile */
+a,
+button,
+input {
+  -webkit-tap-highlight-color: transparent;
+}
+ul {
+  list-style: none;
+}
+h1,
+h2 {
+  font-weight: 600;
+  line-height: normal;
+}
+h1 {
+  font-size: 2.5em;
+}
+h2 {
+  font-size: 2em;
+}
