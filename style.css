@@ -69,7 +69,9 @@ input::placeholder {
   padding: 50px 30px;
   border-radius: 30px;
   display: flex;
+  flex-direction: column;
   box-shadow: rgb(149, 157, 165 /20%) 0 8px 24px;
+  overflow: hidden;
 }
 nav ul {
   display: flex;
@@ -219,15 +221,114 @@ form .actions button:hover {
   color: var(--white-color);
   border: 0;
 }
-.signin {
+.theform .play {
+  position: relative;
+  min-height: 300px;
+  transform: translateX(18%) rotateX(-180deg) scale(0.65) rotate(70deg);
+  z-index: 1;
+}
+.theform .play .wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+.theform .play .card {
+  position: absolute;
+  width: 350px;
+  height: 500px;
+  border-radius: 30px;
+}
+.play .card.one {
+  background-color: #3a86ff;
+  transform: rotate(290deg) translate3d(20%, 35%, 0) skewY(-20deg);
+}
+.play .card.two {
+  background-color: #8338ec;
+  transform: rotate(318deg) translate3d(60%, 8%, 0) scale(1.1);
+}
+.play .card.three {
+  background-color: #ff006e;
+  transform: rotate(335deg) translate3d(100%, -20%, 0);
+}
+.play .card.four {
+  background-color: #fb5607;
+  transform: rotate(-15deg) translate3d(45%, 105%, 0) scale(0.8);
+}
+.play .card.five {
+  background-color: #ffbe0b;
+  transform: rotate(283deg) translate3d(-150%, 50%, 0);
+}
+/* animation */
+.signin,
+.signin-show .signup {
   visibility: hidden;
   opacity: 0;
   height: 0;
+}
+.signin-show .signin,
+.signup-show .signup {
+  visibility: visible;
+  opacity: 1;
+  height: auto;
+  transition: visibility 0.7s 0.3s, opacity 0.7s 0.3s;
+}
+.signin-show .signin {
+  animation: singinswipe 1s 0.3s cubic-bezier(0.39, 0.575, 0.565, 1) both;
+}
+@keyframes singinswipe {
+  from {
+    transform: translate3d(-20%, 0, 0);
+  }
+  to {
+    transform: translate3d(0, 0, 0);
+  }
+}
+.signup-show .signup {
+  animation: signupswipe 1s 0.3s cubic-bezier(0.39, 0.575, 0.565, 1) both;
+}
+@keyframes signupswipe {
+  from {
+    transform: translate3d(20%, 0, 0);
+  }
+  to {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+/* animation for mobile */
+.signin-show .play {
+  animation: signiplaymobile 1s both;
+}
+@keyframes signiplaymobile {
+  0% {
+    transform: translateX(18%) rotateX(-180) scale(0.65) rotate(70deg);
+  }
+  50% {
+    transform: translateX(0) rotateX(0) scale(5) rotate(138deg);
+  }
+  100% {
+    transform: translateX(0%) rotateX(-180deg) scale(0.65) rotate(70deg);
+  }
+}
+.signup-show .play {
+  animation: signupplaymobile 1s both;
+}
+@keyframes signupplaymobile {
+  0% {
+    transform: translateX(-50%) skewY(20deg);
+  }
+  50% {
+    transform: translateX(0) rotateX(0) scale(5) rotate(138deg) skewY(40deg);
+  }
+  100% {
+    transform: translateX(18%) rotateX(-180deg) scale(0.65) rotate(70deg);
+  }
 }
 
 @media screen and (min-width: 768px) {
   .theform {
     padding: 50px 0;
+    flex-direction: row;
   }
   .theform > div {
     flex: 1 0 50%;
@@ -238,8 +339,44 @@ form .actions button:hover {
   .signin {
     padding: 0 13% 0 5%;
   }
+  .signin {
+    height: auto;
+  }
   .theform .play {
     position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 50%;
+    z-index: 1;
+    transform: translateX(100%);
+  }
+  .signin-show .play {
+    animation: signinplay 1s both;
+  }
+  @keyframes signinplay {
+    0% {
+      transform: translateX(100%) skewY(20deg);
+    }
+    50% {
+      transform: translateX(25%) scale(10) skewY(40deg) rotateY(180deg);
+    }
+    100% {
+      transform: translateX(0%) rotateY(180deg);
+    }
+  }
+  .signup-show .play {
+    animation: signupplay 1s both;
+  }
+  @keyframes signupplay {
+    0% {
+      transform: translateX(-50%) skewY(80deg);
+    }
+    50% {
+      transform: translateX(0) scale(10) skewY(80deg);
+    }
+    100% {
+      transform: translateX(100%);
+    }
   }
 }
 @media screen and (min-width: 992px) {
